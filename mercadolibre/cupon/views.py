@@ -39,11 +39,10 @@ class Coupon(APIView):
             return await response.json()
 
     def _get_urls(self, items):
-        urls = []
-        for each_item in items:
-            URL = f"https://api.mercadolibre.com/items/{each_item}"
-            urls.append(URL)
-        return tuple(urls)
+        urls = (
+            f"https://api.mercadolibre.com/items/{each_item}" for each_item in items
+        )
+        return urls
 
     async def __fetch_all(self, session, urls):
         tasks = []
