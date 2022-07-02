@@ -24,40 +24,76 @@ def __combinations(result_list, amount):
             suma = suma + value
         if suma <= amount:
             anterior = max(anterior, suma)
-            items = each_result
+            items = each_result.keys()
     return (items, anterior)
 
 
-def logica(items, amount):
+def logica(cost, N, K):
     # diccionario = {"MLA1": 100, "MLA2": 210, "MLA3": 260, "MLA4": 80, "MLA5": 90}
     ## TO DO
     ## MAKE BELOW FUNCTION WITH CONCURRENTS FEATURES
-    anterior = 0
-    resultado_executor = None
-    items = {"MLA1": 100, "MLA2": 210, "MLA3": 260, "MLA4": 80, "MLA5": 90}
+    """last = 0
+    items_to_response = None
+    amount_to_response = 0
+    items = {
+        "MLA1": 100,
+        "MLA2": 210,
+        "MLA3": 260,
+        "MLA4": 80,
+        "MLA5": 90,
+        "MLA6": 145,
+        "MLA7": 246,
+        "MLA8": 267,
+        "MLA9": 112,
+        "MLA10": 114,
+        "MLA11": 334,
+        "MLA12": 12,
+        "MLA13": 13,
+        "MLA14": 14,
+        "MLA15": 284,
+        "MLA16": 980,
+        "MLA17": 54,
+        "MLA18": 232,
+        "MLA19": 432,
+        "MLA20": 1,
+    }
     tuple_taks = []
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=30) as executor:
         for each_item in range(0, len(items) + 1):
             result_list = list(
                 map(dict, itertools.combinations(items.items(), each_item))
             )
-            # print(result_list)
-            # arguments = [result_list, amount]
-            # [executor.submit(download_and_save, url, path) for url in urls]
             tuple_taks.append(executor.submit(__combinations, result_list, amount))
-        # resultado_executor = executor.map(__combinations(), *arguments)
+
     for each_task in tuple_taks:
-        print(each_task.result())
-    responnse_api = {"items_id": resultado_executor, "amount": anterior}
-    return responnse_api
+        itmes = each_task.result()[0]
+        amounts = each_task.result()[1]
+        if each_task.result()[1] > last:
+            items_to_response = itmes
+            amount_to_response = amounts
+            last = amounts
+
+    responnse_api = {"items_id": items_to_response, "amount": amount_to_response}"""
+    cost = [("MLA1", 100), ("MLA2", 210), ("MLA3", 260), ("MLA4", 80), ("MLA5", 90)]
+    N = len(cost)
+    cost = [("MLA6": 145),("MLA7": 246),("MLA8": 267),("MLA9": 112),("MLA10": 114),("MLA11": 334),("MLA12": 12),("MLA13": 13),("MLA14": 14),("MLA15": 284),("MLA16": 980),("MLA17": 54),("MLA18": 232),("MLA19": 432),("MLA20": 1),(),(),(),(),(),(),(),]
+    
+
+    sum = 0
+    items = []
+    reversing = cost.sort(reverse=False)
+    cost.sort(reverse=False)
+    for i in range(0, N, 1):
+        if sum + cost[i][1] <= K:
+            sum = sum + cost[i][1]
+            items.append(cost[i][0])
+
+    return sum, items
 
 
 class Coupon(APIView):
     async def __fetch(self, session, url):
         async with session.get(url) as response:
-            # json_response = await response.json()
-            # dict_items[json_response.get("id")] = json_response.get("price")
-            # eturn dict_items
             return await response.json()
 
     def _get_urls(self, items):
@@ -87,6 +123,6 @@ class Coupon(APIView):
         items = {
             each_item.get("id"): each_item.get("price") for each_item in response_async
         }
-        items_response = logica(items, amount)
+        items_response = logica(items, len(items), amount)
 
         return Response(items_response)
