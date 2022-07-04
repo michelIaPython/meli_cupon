@@ -2,8 +2,11 @@ import asyncio
 from inspect import ArgInfo
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.response import Response
 from concurrent.futures import ThreadPoolExecutor
+from cupon.serializers import CuponSerializer
+from cupon.models import CuponModel
 
 # from cupon.serializers import CuponSerializer
 import itertools
@@ -15,7 +18,12 @@ import aiohttp
 # https://api.mercadolibre.com/items/MLA811601010
 
 
-def __combinations(result_list, amount):
+class Cupon(viewsets.ModelViewSet):
+    queryset = CuponModel.objects.all()
+    serializer_class = CuponSerializer
+
+
+"""def __combinations(result_list, amount):
     anterior = 0
     items = None
     for each_result in result_list:
@@ -25,7 +33,7 @@ def __combinations(result_list, amount):
         if suma <= amount:
             anterior = max(anterior, suma)
             items = each_result.keys()
-    return (items, anterior)
+    return (items, anterior)"""
 
 
 def logica(cost, N, K):
@@ -74,19 +82,18 @@ def logica(cost, N, K):
             last = amounts
 
     responnse_api = {"items_id": items_to_response, "amount": amount_to_response}"""
-    cost = [("MLA1", 100), ("MLA2", 210), ("MLA3", 260), ("MLA4", 80), ("MLA5", 90)]
+    cost = {"MLA1": 2595, "MLA2": 1188, "MLA3": 5550, "MLA4": 257, "MLA5": 1037}
+
     N = len(cost)
-    cost = [("MLA6": 145),("MLA7": 246),("MLA8": 267),("MLA9": 112),("MLA10": 114),("MLA11": 334),("MLA12": 12),("MLA13": 13),("MLA14": 14),("MLA15": 284),("MLA16": 980),("MLA17": 54),("MLA18": 232),("MLA19": 432),("MLA20": 1),(),(),(),(),(),(),(),]
-    
+    # cost = [("MLA6": 145),("MLA7": 246),("MLA8": 267),("MLA9": 112),("MLA10": 114),("MLA11": 334),("MLA12": 12),("MLA13": 13),("MLA14": 14),("MLA15": 284),("MLA16": 980),("MLA17": 54),("MLA18": 232),("MLA19": 432),("MLA20", 1),]
 
     sum = 0
     items = []
-    reversing = cost.sort(reverse=False)
-    cost.sort(reverse=False)
-    for i in range(0, N, 1):
-        if sum + cost[i][1] <= K:
-            sum = sum + cost[i][1]
-            items.append(cost[i][0])
+    sorted_items = {k: v for k, v in sorted(cost.items(), key=lambda item: item[1])}
+    for key, value in sorted_items.items():
+        if sum + value <= K:
+            sum = sum + value
+            items.append(key)
 
     return sum, items
 
