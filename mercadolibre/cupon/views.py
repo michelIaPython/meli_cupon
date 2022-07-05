@@ -46,9 +46,6 @@ class CuponView(viewsets.ModelViewSet):
         # print(f"Time: {perf_counter() - before}")
         sin_nones = quitar_nones(response_async)
         # print(f"Time: {perf_counter() - before}")
-        """for each_item in response_async:
-            resultado = put_in_db(each_item)
-            items.update(resultado)"""
         with cf.ThreadPoolExecutor() as executor:
             futures = []
             for each_item in sin_nones:
@@ -59,7 +56,7 @@ class CuponView(viewsets.ModelViewSet):
         # print(f"Time: {perf_counter() - before}")
         # print(items)
         items_response = logica(items, amount)
-        # print(f"Time: {perf_counter() - before}")
+        print(f"Time: {perf_counter() - before}")
         return Response(items_response)
 
     @action(methods=["get"], detail=False)
