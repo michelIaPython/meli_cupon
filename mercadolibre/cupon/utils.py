@@ -40,5 +40,3 @@ def put_in_db(each_item):
         CuponModel.objects.create(item_id=item_id, price=price)
 
     return item
-
-    # return item
