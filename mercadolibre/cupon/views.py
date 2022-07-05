@@ -1,21 +1,20 @@
 import asyncio
-from inspect import ArgInfo
-from django.shortcuts import render
-from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
-from concurrent.futures import ThreadPoolExecutor
+import concurrent.futures as cf
 from cupon.serializers import CuponSerializer
 from cupon.models import CuponModel
-
-# from cupon.serializers import CuponSerializer
-import itertools
+from cupon.utils import logica, put_in_db, quitar_nones
+from time import perf_counter
+from rest_framework.decorators import action
 import aiohttp
 
 # MLA811601010 , MLA810645375
 # curl -X GET -H 'Authorization: Bearer $ACCESS_TOKEN' https://api.mercadolibre.com/items?ids=$ITEM_ID1,$ITEM_ID2&attributes=$ATTRIBUTE1,$ATTRIBUTE2,$ATTRIBUTE3
 # https://api.mercadolibre.com/items/?ids=MLA811601010&attributes=price,id
 # https://api.mercadolibre.com/items/MLA811601010
+
+# MLM793495302 579, MLM-1392572571 4099, MLM-1336615409 590, MLM13841393 599, MLM-873442300 249
 
 
 class CuponView(viewsets.ModelViewSet):
@@ -26,53 +25,49 @@ class CuponView(viewsets.ModelViewSet):
         async with session.get(url) as response:
             return await response.json()
 
-    def _get_urls(self, items):
-        urls = (
-            f"https://api.mercadolibre.com/items/{each_item}" for each_item in items
-        )
-        return urls
-
-    async def __get_all_items(self, session, urls):
-        tasks = []
-        for url in urls:
-            task = asyncio.create_task(self.__get_items(session, url))
-            tasks.append(task)
-        result = await asyncio.gather(*tasks)
-        return result
-
     async def __main(self, ids):
-        urls = self._get_urls(ids)
+        before = perf_counter()
+        urls = (f"https://api.mercadolibre.com/items/{each_item}" for each_item in ids)
+        print(f"Time: {perf_counter() - before}")
         async with aiohttp.ClientSession() as session:
-            response = await self.__get_all_items(session, urls)
+            response = await asyncio.gather(
+                *[self.__get_items(session, url) for url in urls]
+            )
+
             return response
 
     def create(self, request):
+
         ids = request.data
         amount = request.data.get("amount")
+        items = {}
+        before = perf_counter()
         response_async = asyncio.run(self.__main(ids.get("item_ids")))
-        items = {
-            each_item.get("id"): each_item.get("price") for each_item in response_async
-        }
+        # print(f"Time: {perf_counter() - before}")
+        sin_nones = quitar_nones(response_async)
+        # print(f"Time: {perf_counter() - before}")
+        """for each_item in response_async:
+            resultado = put_in_db(each_item)
+            items.update(resultado)"""
+        with cf.ThreadPoolExecutor() as executor:
+            futures = []
+            for each_item in sin_nones:
+                futures.append(executor.submit(put_in_db, each_item))
+            for future in cf.as_completed(futures):
+                item = future.result()
+                items.update(item)
+        # print(f"Time: {perf_counter() - before}")
+        # print(items)
         items_response = logica(items, amount)
-
+        # print(f"Time: {perf_counter() - before}")
         return Response(items_response)
 
-
-def logica(cost, amount):
-    # diccionario = {"MLA1": 100, "MLA2": 210, "MLA3": 260, "MLA4": 80, "MLA5": 90}
-    ## TO DO
-    ## MAKE BELOW FUNCTION WITH CONCURRENTS FEATURES
-
-    cost = {"MLA1": 2595, "MLA2": 1188, "MLA3": 5550, "MLA4": 257, "MLA5": 1037}
-
-    # cost = [("MLA6": 145),("MLA7": 246),("MLA8": 267),("MLA9": 112),("MLA10": 114),("MLA11": 334),("MLA12": 12),("MLA13": 13),("MLA14": 14),("MLA15": 284),("MLA16": 980),("MLA17": 54),("MLA18": 232),("MLA19": 432),("MLA20", 1),]
-
-    sum = 0
-    items = []
-    sorted_items = {k: v for k, v in sorted(cost.items(), key=lambda item: item[1])}
-    for key, value in sorted_items.items():
-        if sum + value <= amount:
-            sum = sum + value
-            items.append(key)
-
-    return sum, items
+    @action(methods=["get"], detail=False)
+    def stats(self, request):
+        # CuponModel.objects.
+        query_set = self.get_queryset().order_by("quantity")[:5]
+        serializer = CuponSerializer(data=query_set, many=True)
+        serializer.is_valid()
+        # print("DEBUG")
+        # .values('id').annotate(jobtitle_count=Count('jobtitle')).order_by('-jobtitle_count')[:5]
+        return Response(serializer.data)
