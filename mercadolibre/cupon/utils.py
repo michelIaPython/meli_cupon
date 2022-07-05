@@ -1,4 +1,7 @@
+# MODELS
 from cupon.models import CuponModel
+
+# DJANGO
 from django.db.models import F
 
 
