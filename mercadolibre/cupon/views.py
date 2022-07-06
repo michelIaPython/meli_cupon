@@ -10,6 +10,7 @@ from aiohttp.client import ClientSession
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework import status
 
 # MODELS
 from cupon.models import CuponModel
@@ -121,11 +122,15 @@ class CuponView(viewsets.ModelViewSet):
             json: Response the number of itemns to buy and the total mount that we spended
         """
 
-        ids = request.data
+        items_list = request.data.get("item_ids", None)
+        if not isinstance(items_list, list) or request.data.get("item_ids") == None:
+            return Response(
+                {"Error": "The payload does not correct"}, status.HTTP_400_BAD_REQUEST
+            )
         amount = request.data.get("amount")
         items = {}
         # before = perf_counter()
-        response_async = asyncio.run(self.get_all_items(ids.get("item_ids")))
+        response_async = asyncio.run(self.get_all_items(items_list))
         # print(f"Time: {perf_counter() - before}")
         sin_nones = remove_empty_items(response_async)
         # print(f"Time: {perf_counter() - before}")
@@ -143,7 +148,7 @@ class CuponView(viewsets.ModelViewSet):
         # print(items)
         items_response = get_number_items(items, amount)
         # print(f"Time: {perf_counter() - before}")
-        return Response(items_response)
+        return Response(items_response, status.HTTP_200_OK)
 
     @action(methods=["get"], detail=False)
     def stats(self, request):

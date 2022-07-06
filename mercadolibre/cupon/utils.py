@@ -47,14 +47,14 @@ def get_number_items(items: dict, amount: float) -> list:
     """
 
     sum = 0
-    items = []
+    items_return = []
     sorted_items = {k: v for k, v in sorted(items.items(), key=itemgetter(1))}
     for key, value in sorted_items.items():
         if sum + value <= amount:
             sum = sum + value
-            items.append(key)
+            items_return.append(key)
 
-    return sum, items
+    return sum, items_return
 
 
 def perform_db(each_item: dict) -> dict:
