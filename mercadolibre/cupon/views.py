@@ -169,4 +169,4 @@ class CuponView(viewsets.ModelViewSet):
         serializer = CuponSerializer(data=query_set, many=True)
         serializer.is_valid()
         # print(f"Time: {perf_counter() - before}")
-        return Response(serializer.data)
+        return Response(serializer.data, status.HTTP_200_OK)

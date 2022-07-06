@@ -18,3 +18,6 @@ class CuponModel(models.Model):
 
     class Meta:
         db_table = "meli_cupon"
+
+    def __str__(self):
+        return self.item_id
