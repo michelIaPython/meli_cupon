@@ -4,20 +4,51 @@ from cupon.models import CuponModel
 # DJANGO
 from django.db.models import F
 
+# PYTHON
+from time import perf_counter
+from operator import itemgetter
 
-def quitar_nones(list_items):
 
-    list_items_clean = [
-        each_item for each_item in list_items if each_item.get("status") == "active"
-    ]
+def remove_empty_items(list_items: list) -> list:
 
+    """
+    This method remove the empty itemns that the API of mercadolibre
+    response like empty
+
+    Args:
+
+    list_items: This arg is list of items [{key:value}]
+
+    Returns:
+
+        list_items_clean: Response the same list that its receive but without none values
+    """
+    # before = perf_counter()
+    list_items_clean = [each_item for each_item in list_items if None not in each_item]
+    # print(f"Time: {perf_counter() - before}")
     return list_items_clean
 
 
-def logica(cost, amount):
+def get_number_items(items: dict, amount: float) -> list:
+
+    """
+    This method perform the logic for the number of items that can buy
+    with the amount given
+
+    Args:
+
+        items: The list of items with its cost
+        amount: The limit of mount
+
+    Returns:
+
+        sum: The sum of the prices for each item that we can buy
+        items: All the items for buy
+    """
+
     sum = 0
     items = []
-    sorted_items = {k: v for k, v in sorted(cost.items(), key=lambda item: item[1])}
+    sorted_items = {k: v for k, v in sorted(items.items(), key=itemgetter(1))}
     for key, value in sorted_items.items():
         if sum + value <= amount:
             sum = sum + value
@@ -26,17 +57,30 @@ def logica(cost, amount):
     return sum, items
 
 
-def put_in_db(each_item):
-    item = {}
-    item_id = each_item.get("id")
-    price = each_item.get("price")
-    item[item_id] = price
+def perform_db(each_item: dict) -> dict:
+
+    """
+    This method update the BD
+
+    Args:
+
+        item: Each item for update {"id":"price"}
+
+    Returns:
+
+        each_item: return the same item that receive
+    """
+
+    # before = perf_counter()
+    item_id = next(iter(each_item.keys()))
+    price = next(iter(each_item.values()))
 
     if CuponModel.objects.filter(item_id=item_id).exists():
         cupon = CuponModel.objects.filter(item_id=item_id).first()
         cupon.quantity = F("quantity") + 1
         cupon.save(update_fields=["quantity"])
+
     else:
         CuponModel.objects.create(item_id=item_id, price=price)
-
-    return item
+    # print(f"Time: {perf_counter() - before}")
+    return each_item
