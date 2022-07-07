@@ -1,6 +1,6 @@
 # DJANGO
 from django.urls import reverse
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 
 # PYTHON
 import json
@@ -11,6 +11,9 @@ from rest_framework import status
 
 # MODELS
 from cupon.models import CuponModel
+
+# VIEWS
+from cupon.views import CuponView
 
 
 class ItemTestCase(APITestCase):
@@ -63,7 +66,7 @@ class ItemTestCase(APITestCase):
         self.assertAlmostEqual(response.status_code, status.HTTP_200_OK)
 
 
-class Create_Update_db(TestCase):
+class CreateUpdatedb(TestCase):
     """@classmethod
     def setUpTestModel(cls):
         cls.item = CuponModel.objects.create(item_id="TEST1", price=129.12)
@@ -77,3 +80,11 @@ class Create_Update_db(TestCase):
         item = CuponModel.objects.create(item_id="TEST1", price=129.12)
         self.assertEquals(str(item), "TEST1")
         self.assertTrue(isinstance(item, CuponModel))
+
+
+class TestInternalFunctions(TestCase):
+    def test_method(self):
+        request = RequestFactory().post("http://127.0.0.1:8000/cupon/")
+        view = CuponView()
+        view.setup(request)
+        view.get_all_items()

@@ -47,7 +47,7 @@ class CuponView(viewsets.ModelViewSet):
     queryset = CuponModel.objects.all()
     serializer_class = CuponSerializer
 
-    async def get_items(self, url: str, session: ClientSession) -> json:
+    async def __get_items(self, url: str, session: ClientSession) -> json:
 
         """
             This is an asyncronous function that perform a request from
@@ -89,7 +89,7 @@ class CuponView(viewsets.ModelViewSet):
         async with aiohttp.ClientSession(connector=my_conn) as session:
             tasks = []
             for url in urls:
-                task = asyncio.ensure_future(self.get_items(url=url, session=session))
+                task = asyncio.ensure_future(self.__get_items(url=url, session=session))
                 tasks.append(task)
             response = await asyncio.gather(*tasks, return_exceptions=True)
         return response
