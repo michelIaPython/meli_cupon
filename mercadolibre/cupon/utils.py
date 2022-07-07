@@ -9,7 +9,7 @@ from time import perf_counter
 from operator import itemgetter
 
 
-def remove_empty_items(list_items: list) -> list:
+def remove_empty_equals_items(list_items: list) -> list:
 
     """
     This method remove the empty itemns that the API of mercadolibre
@@ -25,6 +25,7 @@ def remove_empty_items(list_items: list) -> list:
     """
     # before = perf_counter()
     list_items_clean = [each_item for each_item in list_items if None not in each_item]
+    list_items_clean = [dict(t) for t in {tuple(d.items()) for d in list_items_clean}]
     # print(f"Time: {perf_counter() - before}")
     return list_items_clean
 
@@ -52,7 +53,7 @@ def get_number_items(items: dict, amount: float) -> list:
     sorted_items = {k: v for k, v in sorted(items.items(), key=itemgetter(1))}
     for key, value in sorted_items.items():
         if sum + value <= amount:
-            sum = sum + value
+            sum = round(sum + value, 2)
             items_return.append(key)
     response["items_ids"] = items_return
     response["amount"] = sum
@@ -73,7 +74,6 @@ def perform_db(each_item: dict) -> dict:
         each_item: return the same item that receive
     """
 
-    # before = perf_counter()
     item_id = next(iter(each_item.keys()))
     price = next(iter(each_item.values()))
 
@@ -84,5 +84,4 @@ def perform_db(each_item: dict) -> dict:
 
     else:
         CuponModel.objects.create(item_id=item_id, price=price)
-    # print(f"Time: {perf_counter() - before}")
     return each_item

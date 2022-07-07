@@ -19,7 +19,7 @@ from cupon.models import CuponModel
 from cupon.serializers import CuponSerializer
 
 # UTILS
-from cupon.utils import get_number_items, perform_db, remove_empty_items
+from cupon.utils import get_number_items, perform_db, remove_empty_equals_items
 
 
 # MLA811601010 , MLA810645375
@@ -94,21 +94,6 @@ class CuponView(viewsets.ModelViewSet):
             response = await asyncio.gather(*tasks, return_exceptions=True)
         return response
 
-    """async def __get_items(self, session, url):
-        async with session.get(url) as response:
-            return await response.json()
-
-    async def __main(self, ids):
-        before = perf_counter()
-        urls = (f"https://api.mercadolibre.com/items/{each_item}" for each_item in ids)
-        # print(f"Time: {perf_counter() - before}")
-        async with aiohttp.ClientSession() as session:
-            response = await asyncio.gather(
-                *[self.__get_items(session, url) for url in urls]
-            )
-
-            return response"""
-
     def create(self, request):
 
         """
@@ -121,23 +106,31 @@ class CuponView(viewsets.ModelViewSet):
         Returns:
             json: Response the number of itemns to buy and the total mount that we spended
         """
-
+        # before = perf_counter()
         items_list = request.data.get("item_ids", None)
-        if not isinstance(items_list, list) or request.data.get("item_ids") == None:
+        amount = request.data.get("amount", None)
+        if not isinstance(items_list, list) or items_list == None:
             return Response(
-                {"Error": "The payload does not correct"}, status.HTTP_400_BAD_REQUEST
+                {"Error": "Items does not correct"}, status.HTTP_400_BAD_REQUEST
             )
-        amount = request.data.get("amount")
+        elif (
+            not isinstance(amount, float) and not isinstance(amount, int)
+        ) or amount == None:
+            return Response(
+                {"Error": "Amount does not correct"}, status.HTTP_400_BAD_REQUEST
+            )
+
+        amount = round(float(amount), 2)
         items = {}
         # before = perf_counter()
         response_async = asyncio.run(self.get_all_items(items_list))
         # print(f"Time: {perf_counter() - before}")
-        sin_nones = remove_empty_items(response_async)
+        without_nones_equals = remove_empty_equals_items(response_async)
         # print(f"Time: {perf_counter() - before}")
         # before = perf_counter()
         with cf.ThreadPoolExecutor(max_workers=10) as executor:
             futures = []
-            for each_item in sin_nones:
+            for each_item in without_nones_equals:
                 futures.append(executor.submit(perform_db, each_item))
             # before = perf_counter()
             for future in cf.as_completed(futures):

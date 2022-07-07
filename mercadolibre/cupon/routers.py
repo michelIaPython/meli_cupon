@@ -3,6 +3,6 @@ from cupon.views import CuponView
 
 router = DefaultRouter()
 
-router.register("cupon", CuponView)
+router.register("cupon", CuponView, basename="cupon")
 
 urlpatterns = router.urls
