@@ -4,6 +4,7 @@ from django.test import TestCase, RequestFactory
 
 # PYTHON
 import json
+import asyncio
 
 # DJANGO REST FRAMEWORK
 from rest_framework.test import APIClient, APITestCase
@@ -14,6 +15,9 @@ from cupon.models import CuponModel
 
 # VIEWS
 from cupon.views import CuponView
+
+# UTILS
+from cupon.utils import get_number_items, perform_db, remove_empty_items
 
 
 class ItemTestCase(APITestCase):
@@ -46,7 +50,7 @@ class ItemTestCase(APITestCase):
             json.loads(response_2.content),
             {
                 "items_ids": ["MLM1336615409", "MLM1330350407", "MLM1346645397"],
-                "amount": 3540.88,
+                "amount": 3533.2799999999997,
             },
         )
 
@@ -83,8 +87,31 @@ class CreateUpdatedb(TestCase):
 
 
 class TestInternalFunctions(TestCase):
-    def test_method(self):
+    def setUp(self) -> None:
+        self.LIST_ITEMS = [
+            "MLM13877783",
+            "MLM1392572571",
+            "MLM1336615409",
+            "MLM1346645397",
+            "MLM1330350407",
+        ]
         request = RequestFactory().post("http://127.0.0.1:8000/cupon/")
-        view = CuponView()
-        view.setup(request)
-        view.get_all_items()
+        self.view = CuponView()
+        self.view.setup(request)
+        return super().setUp()
+
+    def test_method_get_all_items(self):
+
+        response = asyncio.run(self.view.get_all_items(self.LIST_ITEMS))
+        self.assertIsInstance(response, list)
+        for each_element in response:
+            self.assertTrue(isinstance(each_element, dict))
+
+    def test_remove_empty_items_none(self):
+
+        response = asyncio.run(self.view.get_all_items(self.LIST_ITEMS))
+        without_empty = remove_empty_items(response)
+        print(without_empty)
+        for each in without_empty:
+            self.assertIsNotNone(next(iter(each.keys())))
+            self.assertIsNotNone(next(iter(each.values())))
