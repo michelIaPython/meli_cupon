@@ -2,7 +2,6 @@
 import asyncio
 import concurrent.futures as cf
 import json
-from time import perf_counter
 import aiohttp
 from aiohttp.client import ClientSession
 
@@ -20,14 +19,6 @@ from cupon.serializers import CuponSerializer
 
 # UTILS
 from cupon.utils import get_number_items, perform_db, remove_empty_equals_items
-
-
-# MLA811601010 , MLA810645375
-# curl -X GET -H 'Authorization: Bearer $ACCESS_TOKEN' https://api.mercadolibre.com/items?ids=$ITEM_ID1,$ITEM_ID2&attributes=$ATTRIBUTE1,$ATTRIBUTE2,$ATTRIBUTE3
-# https://api.mercadolibre.com/items/?ids=MLA811601010&attributes=price,id
-# https://api.mercadolibre.com/items/MLA811601010
-
-# MLM793495302 579, MLM-1392572571 4099, MLM-1336615409 590, MLM13841393 599, MLM-873442300 249
 
 
 class CuponView(viewsets.ModelViewSet):
@@ -106,7 +97,6 @@ class CuponView(viewsets.ModelViewSet):
         Returns:
             json: Response the number of itemns to buy and the total mount that we spended
         """
-        # before = perf_counter()
         items_list = request.data.get("item_ids", None)
         amount = request.data.get("amount", None)
         if not isinstance(items_list, list) or items_list == None:
@@ -122,25 +112,22 @@ class CuponView(viewsets.ModelViewSet):
 
         amount = round(float(amount), 2)
         items = {}
-        # before = perf_counter()
+
         response_async = asyncio.run(self.get_all_items(items_list))
-        # print(f"Time: {perf_counter() - before}")
+
         without_nones_equals = remove_empty_equals_items(response_async)
-        # print(f"Time: {perf_counter() - before}")
-        # before = perf_counter()
+
         with cf.ThreadPoolExecutor(max_workers=10) as executor:
             futures = []
             for each_item in without_nones_equals:
                 futures.append(executor.submit(perform_db, each_item))
-            # before = perf_counter()
+
             for future in cf.as_completed(futures):
                 item = future.result()
                 items.update(item)
-            # print(f"Time: {perf_counter() - before}")
-        # print(f"Time: {perf_counter() - before}")
-        # print(items)
+
         items_response = get_number_items(items, amount)
-        # print(f"Time: {perf_counter() - before}")
+
         return Response(items_response, status.HTTP_200_OK)
 
     @action(methods=["get"], detail=False)
@@ -157,9 +144,8 @@ class CuponView(viewsets.ModelViewSet):
 
         """
 
-        # before = perf_counter()
         query_set = self.get_queryset().order_by("-quantity")[:5]
         serializer = CuponSerializer(data=query_set, many=True)
         serializer.is_valid()
-        # print(f"Time: {perf_counter() - before}")
+
         return Response(serializer.data, status.HTTP_200_OK)

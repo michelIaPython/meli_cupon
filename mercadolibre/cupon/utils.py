@@ -5,7 +5,6 @@ from cupon.models import CuponModel
 from django.db.models import F
 
 # PYTHON
-from time import perf_counter
 from operator import itemgetter
 
 
@@ -23,10 +22,10 @@ def remove_empty_equals_items(list_items: list) -> list:
 
         list_items_clean: Response the same list that its receive but without none values
     """
-    # before = perf_counter()
+
     list_items_clean = [each_item for each_item in list_items if None not in each_item]
     list_items_clean = [dict(t) for t in {tuple(d.items()) for d in list_items_clean}]
-    # print(f"Time: {perf_counter() - before}")
+
     return list_items_clean
 
 

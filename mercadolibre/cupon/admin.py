@@ -1,3 +1,4 @@
 from django.contrib import admin
+from cupon.models import CuponModel
 
-# Register your models here.
+admin.register(CuponModel)
