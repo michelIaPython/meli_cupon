@@ -194,11 +194,11 @@ class TestDB(TestCase):
         increment, _ = CuponModel.objects.update_or_create(item_id=self.cupon.item_id)
         increment.quantity = F("quantity") + 1
         increment.save(update_fields=["quantity"])
-        self.assertEquals(CuponModel.objects.get(item_id="TESTINGDB1").quantity, 1)
+        self.assertEquals(CuponModel.objects.get(item_id="TESTINGDB1").quantity, 2)
 
     def test_increment_function(self):
         perform_db({"TESTINGDB1": 12345})
-        self.assertEquals(CuponModel.objects.get(item_id="TESTINGDB1").quantity, 1)
+        self.assertEquals(CuponModel.objects.get(item_id="TESTINGDB1").quantity, 2)
 
 
 class TestRetriveItems(TestCase):
