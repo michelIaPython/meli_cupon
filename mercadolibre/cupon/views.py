@@ -37,6 +37,7 @@ class CuponView(viewsets.ModelViewSet):
 
     queryset = CuponModel.objects.all()
     serializer_class = CuponSerializer
+    http_method_names = ["get", "post"]
 
     async def __get_items(self, url: str, session: ClientSession) -> json:
 
