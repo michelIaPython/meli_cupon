@@ -22,11 +22,16 @@ def remove_empty_equals_items(list_items: list) -> list:
 
         list_items_clean: Response the same list that its receive but without none values
     """
-
-    list_items_clean = [each_item for each_item in list_items if None not in each_item]
-    list_items_clean = [dict(t) for t in {tuple(d.items()) for d in list_items_clean}]
-
-    return list_items_clean
+    try:
+        list_items_clean = [
+            each_item for each_item in list_items if None not in each_item
+        ]
+        list_items_clean = [
+            dict(t) for t in {tuple(d.items()) for d in list_items_clean}
+        ]
+        return list_items_clean
+    except Exception as err:
+        raise err
 
 
 def get_number_items(items: dict, amount: float) -> list:
@@ -45,18 +50,20 @@ def get_number_items(items: dict, amount: float) -> list:
         sum: The sum of the prices for each item that we can buy
         items: All the items for buy
     """
-
-    sum = 0
-    items_return = []
-    response = {}
-    sorted_items = {k: v for k, v in sorted(items.items(), key=itemgetter(1))}
-    for key, value in sorted_items.items():
-        if sum + value <= amount:
-            sum = round(sum + value, 2)
-            items_return.append(key)
-    response["items_ids"] = items_return
-    response["amount"] = sum
-    return response
+    try:
+        sum = 0
+        items_return = []
+        response = {}
+        sorted_items = {k: v for k, v in sorted(items.items(), key=itemgetter(1))}
+        for key, value in sorted_items.items():
+            if sum + value <= amount:
+                sum = round(sum + value, 2)
+                items_return.append(key)
+        response["items_ids"] = items_return
+        response["amount"] = sum
+        return response
+    except Exception as err:
+        raise err
 
 
 def perform_db(each_item: dict) -> dict:
@@ -72,15 +79,17 @@ def perform_db(each_item: dict) -> dict:
 
         each_item: return the same item that receive
     """
+    try:
+        item_id = next(iter(each_item.keys()))
+        price = next(iter(each_item.values()))
 
-    item_id = next(iter(each_item.keys()))
-    price = next(iter(each_item.values()))
+        if CuponModel.objects.filter(item_id=item_id).exists():
+            cupon = CuponModel.objects.filter(item_id=item_id).first()
+            cupon.quantity = F("quantity") + 1
+            cupon.save(update_fields=["quantity"])
 
-    if CuponModel.objects.filter(item_id=item_id).exists():
-        cupon = CuponModel.objects.filter(item_id=item_id).first()
-        cupon.quantity = F("quantity") + 1
-        cupon.save(update_fields=["quantity"])
-
-    else:
-        CuponModel.objects.create(item_id=item_id, price=price)
-    return each_item
+        else:
+            CuponModel.objects.create(item_id=item_id, price=price)
+        return each_item
+    except Exception as err:
+        raise err
