@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cupon package &mdash; cupon 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> cupon
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">cupon package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-cupon.admin">cupon.admin module</a></li>
+<li><a class="reference internal" href="#module-cupon.apps">cupon.apps module</a></li>
+<li><a class="reference internal" href="#module-cupon.models">cupon.models module</a></li>
+<li><a class="reference internal" href="#module-cupon.routers">cupon.routers module</a></li>
+<li><a class="reference internal" href="#module-cupon.serializers">cupon.serializers module</a></li>
+<li><a class="reference internal" href="#module-cupon.tests">cupon.tests module</a></li>
+<li><a class="reference internal" href="#cupon-urls-module">cupon.urls module</a></li>
+<li><a class="reference internal" href="#module-cupon.utils">cupon.utils module</a></li>
+<li><a class="reference internal" href="#module-cupon.views">cupon.views module</a></li>
+<li><a class="reference internal" href="#module-cupon">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cupon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>cupon package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cupon.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cupon-package">
+<h1>cupon package<a class="headerlink" href="#cupon-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cupon.migrations.html">cupon.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cupon.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cupon.migrations.html#module-cupon.migrations.0001_initial">cupon.migrations.0001_initial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cupon.migrations.html#module-cupon.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-cupon.admin">
+<span id="cupon-admin-module"></span><h2>cupon.admin module<a class="headerlink" href="#module-cupon.admin" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-cupon.apps">
+<span id="cupon-apps-module"></span><h2>cupon.apps module<a class="headerlink" href="#module-cupon.apps" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.apps.CuponConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.apps.</span></span><span class="sig-name descname"><span class="pre">CuponConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/apps.html#CuponConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.apps.CuponConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.apps.CuponConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#cupon.apps.CuponConfig.default_auto_field" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.apps.CuponConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cupon'</span></em><a class="headerlink" href="#cupon.apps.CuponConfig.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cupon.models">
+<span id="cupon-models-module"></span><h2>cupon.models module<a class="headerlink" href="#module-cupon.models" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.models.CuponModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.models.</span></span><span class="sig-name descname"><span class="pre">CuponModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/models.html#CuponModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.models.CuponModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model for the API it contais three fields</p>
+<p>item_id
+price
+quantity</p>
+<p>the table names meli_cupon</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="cupon.models.CuponModel.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#cupon.models.CuponModel.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="cupon.models.CuponModel.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#cupon.models.CuponModel.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.models.CuponModel.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#cupon.models.CuponModel.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.models.CuponModel.item_id">
+<span class="sig-name descname"><span class="pre">item_id</span></span><a class="headerlink" href="#cupon.models.CuponModel.item_id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.models.CuponModel.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#cupon.models.CuponModel.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.models.CuponModel.price">
+<span class="sig-name descname"><span class="pre">price</span></span><a class="headerlink" href="#cupon.models.CuponModel.price" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.models.CuponModel.quantity">
+<span class="sig-name descname"><span class="pre">quantity</span></span><a class="headerlink" href="#cupon.models.CuponModel.quantity" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cupon.routers">
+<span id="cupon-routers-module"></span><h2>cupon.routers module<a class="headerlink" href="#module-cupon.routers" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-cupon.serializers">
+<span id="cupon-serializers-module"></span><h2>cupon.serializers module<a class="headerlink" href="#module-cupon.serializers" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.serializers.CuponSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.serializers.</span></span><span class="sig-name descname"><span class="pre">CuponSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/serializers.html#CuponSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.serializers.CuponSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>This is the serializer of the API and return only two fields item_id, quantity</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.serializers.CuponSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/cupon/serializers.html#CuponSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.serializers.CuponSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.serializers.CuponSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('item_id',</span> <span class="pre">'quantity')</span></em><a class="headerlink" href="#cupon.serializers.CuponSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.serializers.CuponSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#cupon.serializers.CuponSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#cupon.models.CuponModel" title="cupon.models.CuponModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CuponModel</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cupon.tests">
+<span id="cupon-tests-module"></span><h2>cupon.tests module<a class="headerlink" href="#module-cupon.tests" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.tests.CreateUpdatedb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.tests.</span></span><span class="sig-name descname"><span class="pre">CreateUpdatedb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#CreateUpdatedb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.CreateUpdatedb" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.CreateUpdatedb.test_model_fields">
+<span class="sig-name descname"><span class="pre">test_model_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#CreateUpdatedb.test_model_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.CreateUpdatedb.test_model_fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.tests.ItemTestCase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.tests.</span></span><span class="sig-name descname"><span class="pre">ItemTestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#ItemTestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.ItemTestCase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.ItemTestCase.test_bad_payload">
+<span class="sig-name descname"><span class="pre">test_bad_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#ItemTestCase.test_bad_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.ItemTestCase.test_bad_payload" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.ItemTestCase.test_get_stats">
+<span class="sig-name descname"><span class="pre">test_get_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#ItemTestCase.test_get_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.ItemTestCase.test_get_stats" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.ItemTestCase.test_items">
+<span class="sig-name descname"><span class="pre">test_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#ItemTestCase.test_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.ItemTestCase.test_items" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.tests.TestDB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.tests.</span></span><span class="sig-name descname"><span class="pre">TestDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestDB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestDB" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestDB.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestDB.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestDB.setUp" title="Permalink to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestDB.test_increment">
+<span class="sig-name descname"><span class="pre">test_increment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestDB.test_increment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestDB.test_increment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestDB.test_increment_function">
+<span class="sig-name descname"><span class="pre">test_increment_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestDB.test_increment_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestDB.test_increment_function" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestDB.test_send_data_db">
+<span class="sig-name descname"><span class="pre">test_send_data_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestDB.test_send_data_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestDB.test_send_data_db" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestDB.test_send_several_data_db">
+<span class="sig-name descname"><span class="pre">test_send_several_data_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestDB.test_send_several_data_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestDB.test_send_several_data_db" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.tests.TestInternalFunctions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.tests.</span></span><span class="sig-name descname"><span class="pre">TestInternalFunctions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestInternalFunctions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestInternalFunctions" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestInternalFunctions.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/cupon/tests.html#TestInternalFunctions.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestInternalFunctions.setUp" title="Permalink to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestInternalFunctions.test_method_get_all_items">
+<span class="sig-name descname"><span class="pre">test_method_get_all_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestInternalFunctions.test_method_get_all_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestInternalFunctions.test_method_get_all_items" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestInternalFunctions.test_remove_empty_items_none">
+<span class="sig-name descname"><span class="pre">test_remove_empty_items_none</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestInternalFunctions.test_remove_empty_items_none"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestInternalFunctions.test_remove_empty_items_none" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestInternalFunctions.test_remove_equals_items_none">
+<span class="sig-name descname"><span class="pre">test_remove_equals_items_none</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestInternalFunctions.test_remove_equals_items_none"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestInternalFunctions.test_remove_equals_items_none" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.tests.TestRetriveItems">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.tests.</span></span><span class="sig-name descname"><span class="pre">TestRetriveItems</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestRetriveItems"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestRetriveItems" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestRetriveItems.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/cupon/tests.html#TestRetriveItems.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestRetriveItems.setUp" title="Permalink to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.tests.TestRetriveItems.test_get_items">
+<span class="sig-name descname"><span class="pre">test_get_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/tests.html#TestRetriveItems.test_get_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.tests.TestRetriveItems.test_get_items" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="cupon-urls-module">
+<h2>cupon.urls module<a class="headerlink" href="#cupon-urls-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-cupon.utils">
+<span id="cupon-utils-module"></span><h2>cupon.utils module<a class="headerlink" href="#module-cupon.utils" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cupon.utils.get_number_items">
+<span class="sig-prename descclassname"><span class="pre">cupon.utils.</span></span><span class="sig-name descname"><span class="pre">get_number_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/cupon/utils.html#get_number_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.utils.get_number_items" title="Permalink to this definition"></a></dt>
+<dd><p>This method perform the logic for the number of items that can buy
+with the amount given</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> – The list of items with its cost</p></li>
+<li><p><strong>amount</strong> – The limit of mount</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sum of the prices for each item that we can buy
+items: All the items for buy</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>sum</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cupon.utils.perform_db">
+<span class="sig-prename descclassname"><span class="pre">cupon.utils.</span></span><span class="sig-name descname"><span class="pre">perform_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">each_item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/cupon/utils.html#perform_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.utils.perform_db" title="Permalink to this definition"></a></dt>
+<dd><p>This method update the BD</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item</strong> – Each item for update {“id”:”price”}</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return the same item that receive</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>each_item</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cupon.utils.remove_empty_equals_items">
+<span class="sig-prename descclassname"><span class="pre">cupon.utils.</span></span><span class="sig-name descname"><span class="pre">remove_empty_equals_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/cupon/utils.html#remove_empty_equals_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.utils.remove_empty_equals_items" title="Permalink to this definition"></a></dt>
+<dd><p>This method remove the empty itemns that the API of mercadolibre
+response like empty</p>
+<p>Args:</p>
+<p>list_items: This arg is list of items [{key:value}]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Response the same list that its receive but without none values</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list_items_clean</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-cupon.views">
+<span id="cupon-views-module"></span><h2>cupon.views module<a class="headerlink" href="#module-cupon.views" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cupon.views.CuponView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cupon.views.</span></span><span class="sig-name descname"><span class="pre">CuponView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/views.html#CuponView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.views.CuponView" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<blockquote>
+<div><p>This is the view for API cupon, it have two methods create and stats
+The method create is a overrided method
+The method stats is a new method using the decorator action</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>viewsets</strong> (<em>_type_</em>) – viewsets</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Json</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.views.CuponView.basename">
+<span class="sig-name descname"><span class="pre">basename</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cupon.views.CuponView.basename" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.views.CuponView.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/views.html#CuponView.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.views.CuponView.create" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><p>This is the override method create this perform a post and calculate
+the number of tems that you can buy with determinate price</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – This is the request of a petition</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response the number of itemns to buy and the total mount that we spended</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>json</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.views.CuponView.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cupon.views.CuponView.description" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.views.CuponView.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cupon.views.CuponView.detail" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.views.CuponView.get_all_items">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/views.html#CuponView.get_all_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.views.CuponView.get_all_items" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><p>This is an asyncronous function that perform all the task that we
+depends of the list of urls</p>
+</div></blockquote>
+<p>Args:</p>
+<p>urls: This is a list of urls</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>This is a list of dict ({id:price})</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.views.CuponView.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cupon.views.CuponView.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.views.CuponView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;CuponModel:</span> <span class="pre">MLM1392572571&gt;,</span> <span class="pre">&lt;CuponModel:</span> <span class="pre">MLM1346645397&gt;,</span> <span class="pre">&lt;CuponModel:</span> <span class="pre">MLM1336615409&gt;,</span> <span class="pre">&lt;CuponModel:</span> <span class="pre">MLM1330350407&gt;]&gt;</span></em><a class="headerlink" href="#cupon.views.CuponView.queryset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.views.CuponView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#cupon.views.CuponView.serializer_class" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#cupon.serializers.CuponSerializer" title="cupon.serializers.CuponSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">CuponSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cupon.views.CuponView.stats">
+<span class="sig-name descname"><span class="pre">stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cupon/views.html#CuponView.stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cupon.views.CuponView.stats" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><p>This method perform the request for get the 5 items most voted</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – This is the request of a petition</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response the number of items most voted</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>json</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cupon.views.CuponView.suffix">
+<span class="sig-name descname"><span class="pre">suffix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cupon.views.CuponView.suffix" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cupon">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cupon" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, jair paredes.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
