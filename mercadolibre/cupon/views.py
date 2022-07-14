@@ -55,12 +55,14 @@ class CuponView(viewsets.ModelViewSet):
 
             dict_return: This is a dictionary that contains id and price
         """
-
-        dict_return = {}
-        async with session.get(url) as response:
-            result = await response.json()
-            dict_return[result.get("id")] = result.get("price")
-            return dict_return
+        try:
+            dict_return = {}
+            async with session.get(url) as response:
+                result = await response.json()
+                dict_return[result.get("id")] = result.get("price")
+                return dict_return
+        except Exception as err:
+            raise err
 
     async def get_all_items(self, urls: list):
         """
@@ -75,16 +77,22 @@ class CuponView(viewsets.ModelViewSet):
 
             response: This is a list of dict ({id:price})
         """
-
-        my_conn = aiohttp.TCPConnector(limit=10)
-        urls = (f"https://api.mercadolibre.com/items/{each_item}" for each_item in urls)
-        async with aiohttp.ClientSession(connector=my_conn) as session:
-            tasks = []
-            for url in urls:
-                task = asyncio.ensure_future(self.__get_items(url=url, session=session))
-                tasks.append(task)
-            response = await asyncio.gather(*tasks, return_exceptions=True)
-        return response
+        try:
+            my_conn = aiohttp.TCPConnector(limit=10)
+            urls = (
+                f"https://api.mercadolibre.com/items/{each_item}" for each_item in urls
+            )
+            async with aiohttp.ClientSession(connector=my_conn) as session:
+                tasks = []
+                for url in urls:
+                    task = asyncio.ensure_future(
+                        self.__get_items(url=url, session=session)
+                    )
+                    tasks.append(task)
+                response = await asyncio.gather(*tasks, return_exceptions=True)
+            return response
+        except Exception as err:
+            raise err
 
     def create(self, request):
 
@@ -98,38 +106,43 @@ class CuponView(viewsets.ModelViewSet):
         Returns:
             json: Response the number of itemns to buy and the total mount that we spended
         """
-        items_list = request.data.get("item_ids", None)
-        amount = request.data.get("amount", None)
-        if not isinstance(items_list, list) or items_list == None:
-            return Response(
-                {"Error": "Items does not correct"}, status.HTTP_400_BAD_REQUEST
-            )
-        elif (
-            not isinstance(amount, float) and not isinstance(amount, int)
-        ) or amount == None:
-            return Response(
-                {"Error": "Amount does not correct"}, status.HTTP_400_BAD_REQUEST
-            )
 
-        amount = round(float(amount), 2)
-        items = {}
+        try:
+            items_list = request.data.get("item_ids", None)
+            amount = request.data.get("amount", None)
+            if not isinstance(items_list, list) or items_list == None:
+                return Response(
+                    {"Error": "Items does not correct"}, status.HTTP_400_BAD_REQUEST
+                )
+            elif (
+                not isinstance(amount, float) and not isinstance(amount, int)
+            ) or amount == None:
+                return Response(
+                    {"Error": "Amount does not correct"}, status.HTTP_400_BAD_REQUEST
+                )
 
-        response_async = asyncio.run(self.get_all_items(items_list))
+            amount = round(float(amount), 2)
+            items = {}
 
-        without_nones_equals = remove_empty_equals_items(response_async)
+            response_async = asyncio.run(self.get_all_items(items_list))
 
-        with cf.ThreadPoolExecutor(max_workers=10) as executor:
-            futures = []
-            for each_item in without_nones_equals:
-                futures.append(executor.submit(perform_db, each_item))
+            without_nones_equals = remove_empty_equals_items(response_async)
 
-            for future in cf.as_completed(futures):
-                item = future.result()
-                items.update(item)
+            with cf.ThreadPoolExecutor(max_workers=10) as executor:
+                futures = []
+                for each_item in without_nones_equals:
+                    futures.append(executor.submit(perform_db, each_item))
 
-        items_response = get_number_items(items, amount)
+                for future in cf.as_completed(futures):
+                    item = future.result()
+                    items.update(item)
 
-        return Response(items_response, status.HTTP_200_OK)
+            items_response = get_number_items(items, amount)
+
+            return Response(items_response, status.HTTP_200_OK)
+
+        except Exception as err:
+            return Response({"An error ocurred": str(err)}, status.HTTP_400_BAD_REQUEST)
 
     @action(methods=["get"], detail=False)
     def stats(self, request):
@@ -144,9 +157,12 @@ class CuponView(viewsets.ModelViewSet):
             json: Response the number of items most voted
 
         """
+        try:
+            query_set = self.get_queryset().order_by("-quantity")[:5]
+            serializer = CuponSerializer(data=query_set, many=True)
+            serializer.is_valid()
 
-        query_set = self.get_queryset().order_by("-quantity")[:5]
-        serializer = CuponSerializer(data=query_set, many=True)
-        serializer.is_valid()
+            return Response(serializer.data, status.HTTP_200_OK)
 
-        return Response(serializer.data, status.HTTP_200_OK)
+        except Exception as err:
+            return Response({"An error ocurred": str(err)}, status.HTTP_400_BAD_REQUEST)
